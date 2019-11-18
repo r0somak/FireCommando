@@ -3103,10 +3103,10 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
-    m_FontSize: 300
+    m_FontSize: 200
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 10
+    m_MinSize: 2
     m_MaxSize: 300
     m_Alignment: 4
     m_AlignByGeometry: 1
@@ -3213,6 +3213,7 @@ GameObject:
   - component: {fileID: 1335890390}
   - component: {fileID: 1335890389}
   - component: {fileID: 1335890393}
+  - component: {fileID: 1335890394}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -3315,6 +3316,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d193ae8f9e5617418b79e667a7daa12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loginButton: {fileID: 1501510484}
+  registerButton: {fileID: 0}
+  registerPanel: {fileID: 683627020}
+  emailInputField: {fileID: 0}
+  passwordInputField: {fileID: 0}
+  passwordConfirmInputField: {fileID: 0}
+  sendData: {fileID: 0}
+  okPanel: {fileID: 69781144}
+  okPanelButton: {fileID: 0}
+  badPanel: {fileID: 1879787421}
+  panelBadMessage: {fileID: 0}
+  badPanelButton: {fileID: 0}
+  loginPanel: {fileID: 893645364}
+  emailLoginInput: {fileID: 0}
+  passwordLoginInput: {fileID: 0}
+  doLoginButton: {fileID: 0}
+--- !u!114 &1335890394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335890388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dba50a1bd15d544cb58f08673959149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1362569012
