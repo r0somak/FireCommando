@@ -1464,20 +1464,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 43d59b5c638b0664db55f3a4e4d130ef, type: 2}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 300
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
@@ -1846,8 +1846,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 936471229}
   m_TextComponent: {fileID: 1558806533}
   m_Placeholder: {fileID: 1483127103}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -1952,20 +1952,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 43d59b5c638b0664db55f3a4e4d130ef, type: 2}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 300
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
@@ -2145,13 +2145,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 982543440}
   m_TextComponent: {fileID: 756585735}
   m_Placeholder: {fileID: 1736518333}
-  m_ContentType: 0
+  m_ContentType: 6
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 7
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 5
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -2604,8 +2604,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1068719909}
   m_TextComponent: {fileID: 952594185}
   m_Placeholder: {fileID: 1107446316}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_AsteriskChar: 42
   m_KeyboardType: 0
   m_LineType: 0
@@ -3319,21 +3319,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loginButton: {fileID: 1501510484}
-  registerButton: {fileID: 0}
+  registerButton: {fileID: 362836220}
   registerPanel: {fileID: 683627020}
-  emailInputField: {fileID: 0}
-  passwordInputField: {fileID: 0}
-  passwordConfirmInputField: {fileID: 0}
-  sendData: {fileID: 0}
+  emailInputField: {fileID: 982543439}
+  passwordInputField: {fileID: 1068719908}
+  passwordConfirmInputField: {fileID: 936471228}
+  sendData: {fileID: 1834511653}
   okPanel: {fileID: 69781144}
-  okPanelButton: {fileID: 0}
+  okPanelButton: {fileID: 2023194358}
   badPanel: {fileID: 1879787421}
-  panelBadMessage: {fileID: 0}
-  badPanelButton: {fileID: 0}
+  panelBadMessage: {fileID: 1149443123}
+  badPanelButton: {fileID: 1698838907}
   loginPanel: {fileID: 893645364}
-  emailLoginInput: {fileID: 0}
-  passwordLoginInput: {fileID: 0}
-  doLoginButton: {fileID: 0}
+  emailLoginInput: {fileID: 282964819}
+  passwordLoginInput: {fileID: 466829518}
+  doLoginButton: {fileID: 492633913}
 --- !u!114 &1335890394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3628,20 +3628,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 43d59b5c638b0664db55f3a4e4d130ef, type: 2}
   m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 585188cdc4600544eb408bee749e4b3a, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 300
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
