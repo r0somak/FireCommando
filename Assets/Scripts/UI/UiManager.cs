@@ -100,8 +100,17 @@ public class UiManager : MonoBehaviour
         _message.Clear();
         if (await _db.AuthLoginUser(loginEmailText, loginPasswordText))
         {
-            okMessage.text = "Hello " + FirebaseAuth.DefaultInstance.CurrentUser.Email +
-                             ", click ok to bring hell upon this cursed land!";
+            if (FirebaseAuth.DefaultInstance.CurrentUser.DisplayName == null)
+            {
+                okMessage.text = "Hello " + FirebaseAuth.DefaultInstance.CurrentUser.Email +
+                                 ", click ok to bring hell upon this cursed land!";
+            }
+            else
+            {
+                okMessage.text = "Hello " + FirebaseAuth.DefaultInstance.CurrentUser.DisplayName +
+                                 ", click ok to bring hell upon this cursed land!";
+            }
+            
             SetPanelVisibility(okLoginPanel, true);
         }
         else
