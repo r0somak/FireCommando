@@ -34,7 +34,7 @@ public class DbHelper
             }
         });
     }
-
+    
     public async Task<bool> AuthRegisterNewUser(string email, string password)
     {
         var auth = FirebaseAuth.DefaultInstance;
@@ -53,7 +53,23 @@ public class DbHelper
             {
                 Debug.Log("UWAGA UWAGA WYJATEK: " + e.InnerException);
             }
+            return false;
+        }
+    }
 
+    public async Task<bool> AuthLoginUser(string email, string pasword)
+    {
+        var auth = FirebaseAuth.DefaultInstance;
+        try
+        {
+            FirebaseUser x = await auth.SignInWithEmailAndPasswordAsync(email, pasword);
+            Debug.LogFormat("User signed in successfully: {0} ({1})",
+                x.DisplayName, x.UserId);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Debug.Log(e);
             return false;
         }
     }

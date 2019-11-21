@@ -16,15 +16,17 @@ using Firebase.Unity.Editor;
 
 public class UiManager : MonoBehaviour
 {
-    private StringBuilder message = new StringBuilder("");
-    private List<string> messagesList = new List<string>
+    private StringBuilder _message = new StringBuilder("");
+    private List<string> _messagesList = new List<string>
     {
         "Wrong email format\n",
         "Password is too short, must be at least 6 characters\n",
         "Passwords differ\n",
-        "Email is already in use\n"
+        "Email is already in use\n",
+        "Bad credentials!\n",
     };
-
+    private DbHelper _db;
+    
     [Header("Main start panel")] 
     public Button loginButton;
     public Button registerButton;
@@ -45,6 +47,11 @@ public class UiManager : MonoBehaviour
     public Text panelBadMessage;
     public Button badPanelButton;
 
+    [Header("Ok login panel")] 
+    public RectTransform okLoginPanel;
+    public Text okLoginPanelText;
+    public Button okLoginPanelButton;
+    
     [Header("Login Panel")] 
     public RectTransform loginPanel;
     public InputField emailLoginInput;
@@ -55,16 +62,15 @@ public class UiManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetPanelVisibility(registerPanel, false);
-        SetPanelVisibility(okPanel, false);
-        SetPanelVisibility(badPanel, false);
-        SetPanelVisibility(loginPanel, false);
-
+        _db = new DbHelper();
+        
+        HideAllPanels();
+        
         Button registerBtn = registerButton.GetComponent<Button>();
         registerBtn.onClick.AddListener(delegate { SetPanelVisibility(registerPanel, true); });
 
         Button sendRegisterBtn = sendData.GetComponent<Button>();
-        sendRegisterBtn.onClick.AddListener(CheckRegisterCredentials);
+        sendRegisterBtn.onClick.AddListener(CheckCredentialsRegisterUser);
 
         Button tryAgain = badPanelButton.GetComponent<Button>();
         tryAgain.onClick.AddListener(delegate { SetPanelVisibility(badPanel, false); });
@@ -75,15 +81,39 @@ public class UiManager : MonoBehaviour
             SetPanelVisibility(okPanel, false);
             SetPanelVisibility(registerPanel, false);
         });
+
+        Button logButton = loginButton.GetComponent<Button>();
+        logButton.onClick.AddListener(delegate { SetPanelVisibility(loginPanel, true); });
+
+        Button loginAuthUserBtn = doLoginButton.GetComponent<Button>();
+        loginAuthUserBtn.onClick.AddListener(LoginAuthUser);
     }
 
-    // Update is called once per frame
-    void Update()
+    private async void LoginAuthUser()
     {
+        string loginEmailText = emailLoginInput.GetComponent<InputField>().text;
+        string loginPasswordText = passwordLoginInput.GetComponent<InputField>().text;
+        Text badMessage = panelBadMessage.GetComponent<Text>();
+        Text okMessage = okLoginPanelText.GetComponent<Text>();
         
+        
+        _message.Clear();
+        if (await _db.AuthLoginUser(loginEmailText, loginPasswordText))
+        {
+            okMessage.text = "Hello " + FirebaseAuth.DefaultInstance.CurrentUser.Email +
+                             ", click ok to bring hell upon this cursed land!";
+            SetPanelVisibility(okLoginPanel, true);
+        }
+        else
+        {
+            _message.Append(_messagesList[4]);
+            badMessage.text = _message.ToString();
+            SetPanelVisibility(badPanel, true);
+        }
     }
+    
 //TODO: Dodanie paska postepu, AsyncOperation ?
-    private async void CheckRegisterCredentials()
+    private async void CheckCredentialsRegisterUser()
     {
         string emailText = emailInputField.GetComponent<InputField>().text;
         string passwordText = passwordInputField.GetComponent<InputField>().text;
@@ -95,19 +125,18 @@ public class UiManager : MonoBehaviour
                                        + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$");
         Match emailMatch = emailPattern.Match(emailText);
         
-        message.Clear();
+        _message.Clear();
         
         if (passwordText == passwordConfirmText && passwordText.Length >= 6 && emailMatch.Success)
         {
-            DbHelper db = new DbHelper();
-            if (await db.AuthRegisterNewUser(emailText, passwordConfirmText))
+            if (await _db.AuthRegisterNewUser(emailText, passwordConfirmText))
             {
                 SetPanelVisibility(okPanel, true);
             }
             else
             {
-                message.Append(messagesList[3]);
-                badMessage.text = message.ToString();
+                _message.Append(_messagesList[3]);
+                badMessage.text = _message.ToString();
                 SetPanelVisibility(badPanel, true);
             }
         }
@@ -116,21 +145,21 @@ public class UiManager : MonoBehaviour
             Debug.Log("Credentials not ok");
             if (passwordText != passwordConfirmText)
             {
-                message.Append(messagesList[2]);
+                _message.Append(_messagesList[2]);
                 Debug.Log("Passwords are different");
             }
             if (passwordConfirmText.Length <= 5)
             {
-                message.Append(messagesList[1]);
+                _message.Append(_messagesList[1]);
                 Debug.Log("Password is too short");
             }
             if (!emailMatch.Success)
             {
-                message.Append(messagesList[0]);
+                _message.Append(_messagesList[0]);
                 Debug.Log("Wrong email format");
             }
             
-            badMessage.text = message.ToString();
+            badMessage.text = _message.ToString();
             SetPanelVisibility(badPanel, true);
         }
     }
@@ -138,5 +167,14 @@ public class UiManager : MonoBehaviour
     private static void SetPanelVisibility(RectTransform panel, bool x)
     {
         panel.localScale = x ? new Vector3(1,1) : new Vector3(0, 0);
+    }
+
+    private void HideAllPanels()
+    {
+        SetPanelVisibility(registerPanel, false);
+        SetPanelVisibility(okPanel, false);
+        SetPanelVisibility(badPanel, false);
+        SetPanelVisibility(loginPanel, false);
+        SetPanelVisibility(okLoginPanel, false);
     }
 }
