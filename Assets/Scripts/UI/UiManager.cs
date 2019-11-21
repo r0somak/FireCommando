@@ -100,27 +100,16 @@ public class UiManager : MonoBehaviour
         if (passwordText == passwordConfirmText && passwordText.Length >= 6 && emailMatch.Success)
         {
             DbHelper db = new DbHelper();
-            var auth = FirebaseAuth.DefaultInstance;
-            FirebaseUser newUsr;
-            try
+            if (await db.AuthRegisterNewUser(emailText, passwordConfirmText))
             {
-                newUsr = await auth.CreateUserWithEmailAndPasswordAsync(emailText, passwordConfirmText);
+                SetPanelVisibility(okPanel, true);
             }
-            catch (Exception e)
+            else
             {
-                if (e.InnerException != null && e.InnerException.ToString() == "Firebase.FirebaseException: The email address is already in use by another account.")
-                {
-                    Debug.Log("UWAGA UWAGA WYJATEK: "+e.InnerException);
-                    message.Append(messagesList[3]);
-                    badMessage.text = message.ToString();
-                    SetPanelVisibility(badPanel, true);
-                }
-                throw;
+                message.Append(messagesList[3]);
+                badMessage.text = message.ToString();
+                SetPanelVisibility(badPanel, true);
             }
-            Debug.LogFormat("Firebase user created successfully: email: {0} userId: ({1}), displayName: {2}",
-                newUsr.Email, newUsr.UserId, newUsr.DisplayName);
-            db.SaveNewUser(newUsr);
-            SetPanelVisibility(okPanel, true);
         }
         else
         {

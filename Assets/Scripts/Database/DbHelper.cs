@@ -17,7 +17,7 @@ public class DbHelper
         reference = FirebaseDatabase.DefaultInstance.RootReference;
     }
     
-    public void SaveNewUser(FirebaseUser user)
+    private void SaveNewUser(FirebaseUser user)
     {
         Models.User trueUser = new Models.User(user.UserId, user.DisplayName, user.Email);
         string json = JsonUtility.ToJson(trueUser);
@@ -33,5 +33,28 @@ public class DbHelper
                 Debug.Log(user.Email+" Saved to database");
             }
         });
+    }
+
+    public async Task<bool> AuthRegisterNewUser(string email, string password)
+    {
+        var auth = FirebaseAuth.DefaultInstance;
+        try
+        {
+            FirebaseUser newUsr = await auth.CreateUserWithEmailAndPasswordAsync(email, password);
+            Debug.LogFormat("Firebase user created successfully: email: {0} userId: ({1}), displayName: {2}",
+                newUsr.Email, newUsr.UserId, newUsr.DisplayName);
+            SaveNewUser(newUsr);
+            return true;
+        }
+        catch (Exception e)
+        {
+            if (e.InnerException != null && e.InnerException.ToString() ==
+                "Firebase.FirebaseException: The email address is already in use by another account.")
+            {
+                Debug.Log("UWAGA UWAGA WYJATEK: " + e.InnerException);
+            }
+
+            return false;
+        }
     }
 }
