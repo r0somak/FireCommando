@@ -60,7 +60,7 @@ namespace UI
         
 
         // Start is called before the first frame update
-        void Awake()
+        void Start()
         {
             _db = new DbHelper();
             if (FirebaseAuth.DefaultInstance.CurrentUser != null)

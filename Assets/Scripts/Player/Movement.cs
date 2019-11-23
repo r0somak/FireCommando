@@ -74,7 +74,7 @@ namespace Player
                 rb.MovePosition(rb.position + dPos);
 
                 if (dPos != Vector3.zero)
-                    targetFoward = Vector3.ProjectOnPlane(-dPos, Vector3.up);
+                    targetFoward = Vector3.ProjectOnPlane(dPos, Vector3.up);
             }
         }
     }
