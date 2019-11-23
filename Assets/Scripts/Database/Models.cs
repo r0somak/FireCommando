@@ -9,12 +9,14 @@ public class Models : MonoBehaviour
         public string username;
         public string userEmail;
         public string userId;
+        public int highScore;
 
         public User(string userId, string username, string userEmail)
         {
             this.userId = userId;
             this.username = username;
             this.userEmail = userEmail;
+            highScore = 0;
         }
     }
 }
