@@ -1457,7 +1457,7 @@ MonoBehaviour:
   helloMessage: {fileID: 6432169841060429390}
   logoutButton: {fileID: 7556010261719708250}
   startGameButton: {fileID: 7556010263009114610}
-  optionsButton: {fileID: 0}
+  optionsButton: {fileID: 2467488712562886255}
   okPanel: {fileID: 7556010261443429438}
   badPanel: {fileID: 7556010262317843771}
 --- !u!1 &7556010262773100668

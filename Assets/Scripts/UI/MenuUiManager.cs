@@ -29,6 +29,9 @@ namespace UI
             Debug.LogFormat("CURRENT USER DATA: EMAIL: {0}, DISPLAY_NAME: {1}, UUID: {2}", _currentUsr.Email, _currentUsr.DisplayName, _currentUsr.UserId);
             Button logoutBtn = logoutButton.GetComponent<Button>();
             logoutBtn.onClick.AddListener(LogoutUser);
+
+            Button startBtn = startGameButton.GetComponent<Button>();
+            startBtn.onClick.AddListener(delegate { StartCoroutine(MySceneManager.LoadScene("Level_1")); });
             
             DisplayHelloMessage();
         }

@@ -8,6 +8,8 @@ using Firebase.Auth;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Button = UnityEngine.UI.Button;
 
 namespace UI
 {
@@ -58,10 +60,9 @@ namespace UI
         
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             _db = new DbHelper();
-            HideAllPanels();
             if (FirebaseAuth.DefaultInstance.CurrentUser != null)
             {
                 StartCoroutine(MySceneManager.LoadScene("MainMenu"));
@@ -91,6 +92,8 @@ namespace UI
 
             Button loadMainMenu = okLoginPanelButton.GetComponent<Button>();
             loadMainMenu.onClick.AddListener(delegate { StartCoroutine(MySceneManager.LoadScene("MainMenu")); });
+            
+            HideAllPanels();
         }
 
         private async void LoginAuthUser()

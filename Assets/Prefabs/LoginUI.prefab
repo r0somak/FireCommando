@@ -4026,8 +4026,8 @@ GameObject:
   - component: {fileID: 4161549342363147872}
   - component: {fileID: 4161549342363147873}
   - component: {fileID: 4161549342363147874}
-  - component: {fileID: 4161549342363147886}
   - component: {fileID: 4161549342363147885}
+  - component: {fileID: 4161549342363147886}
   m_Layer: 5
   m_Name: LoginUI
   m_TagString: Untagged
@@ -4121,6 +4121,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4161549342363147885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4161549342363147875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dba50a1bd15d544cb58f08673959149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4161549342363147886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4152,18 +4164,6 @@ MonoBehaviour:
   emailLoginInput: {fileID: 4161549340934765796}
   passwordLoginInput: {fileID: 4161549341085110137}
   doLoginButton: {fileID: 4161549340976623758}
---- !u!114 &4161549342363147885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4161549342363147875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dba50a1bd15d544cb58f08673959149, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4161549342396544813
 GameObject:
   m_ObjectHideFlags: 0
