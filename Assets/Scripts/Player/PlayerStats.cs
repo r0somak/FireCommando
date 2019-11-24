@@ -1,6 +1,7 @@
 ﻿using System;
 using Database;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Player
@@ -8,7 +9,7 @@ namespace Player
     public class PlayerStats : MonoBehaviour
     {
         public int healthPoints = 100;
-        public string score;
+        [FormerlySerializedAs("score")] public string highScore;
         public int currentScore;
 
         public Text highScoreText;
@@ -37,8 +38,8 @@ namespace Player
 
         private async void DisplayCurrentUserHighScore()
         {
-            score = await _db.GetCurrentPlayerHighScore();
-            highScoreText.text += " "+score;
+            highScore = await _db.GetCurrentPlayerHighScore();
+            highScoreText.text += " "+highScore;
         }
 
         private void DisplayCurrentScore()

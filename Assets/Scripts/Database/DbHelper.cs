@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Firebase;
 using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Unity.Editor;
 using UnityEngine;
+using Object = System.Object;
 
 namespace Database
 {
@@ -15,6 +17,20 @@ namespace Database
         {
             FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://fire-commando-f72d9.firebaseio.com/");
             _reference = FirebaseDatabase.DefaultInstance.RootReference;
+        }
+
+        
+        public void WriteNewScore(string userId, int score)
+        {
+            string key = _reference.Child("scores").Push().Key;
+            Models.LeaderboardEntry entry = new Models.LeaderboardEntry(userId, score);
+            Dictionary<string, Object> entryValues = entry.ToDictionary();
+
+            Dictionary<string, Object> childUpdates = new Dictionary<string, Object>();
+            childUpdates["/scores/" + key] = entryValues;
+            childUpdates["/users/" + userId] = entryValues;
+
+            _reference.UpdateChildrenAsync(childUpdates);
         }
 
         public async Task<string> GetCurrentPlayerHighScore()
