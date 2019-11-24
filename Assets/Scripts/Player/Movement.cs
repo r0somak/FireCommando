@@ -4,23 +4,23 @@ namespace Player
 {
     public class Movement : MonoBehaviour
     {
-        private Rigidbody rb;
+        private Rigidbody _rb;
 
-        public float moveSpeed = 3f;
+        public float moveSpeed = 5f;
         private float smoothMovement = 3f;
 
-        private Vector3 targetFoward;
+        private Vector3 _targetFoward;
 
-        private bool canMove;
+        private bool _canMove;
 
-        private Vector3 dPos;
-        private UnityEngine.Camera mainCam;
+        private Vector3 _dPos;
+        private UnityEngine.Camera _mainCam;
 
         private void Awake()
         {
-            rb = GetComponent<Rigidbody>();
-            targetFoward = transform.forward;
-            mainCam = UnityEngine.Camera.main;
+            _rb = GetComponent<Rigidbody>();
+            _targetFoward = transform.forward;
+            _mainCam = UnityEngine.Camera.main;
         }
     
 
@@ -40,10 +40,10 @@ namespace Player
         {
             if (Input.GetMouseButtonDown(0))
             {
-                canMove = true;
+                _canMove = true;
             }else if (Input.GetMouseButtonUp(0))
             {
-                canMove = false;
+                _canMove = false;
             }
         }
 
@@ -51,30 +51,30 @@ namespace Player
         {
             transform.forward = Vector3.Slerp(
                 transform.forward,
-                targetFoward,
+                _targetFoward,
                 Time.deltaTime * smoothMovement);
         }
     
         void MovePlayer()
         {
-            if (canMove)
+            if (_canMove)
             {
-                dPos = new Vector3(
+                _dPos = new Vector3(
                     Input.GetAxisRaw("Horizontal"), 
                     0f, 
                     Input.GetAxisRaw("Vertical"));
             
-                dPos.Normalize();
+                _dPos.Normalize();
 
-                dPos *= moveSpeed * Time.fixedDeltaTime;
-                dPos = Quaternion.Euler(
+                _dPos *= moveSpeed * Time.fixedDeltaTime;
+                _dPos = Quaternion.Euler(
                            0f, 
-                           mainCam.transform.eulerAngles.y, 
-                           0f) * dPos;
-                rb.MovePosition(rb.position + dPos);
+                           _mainCam.transform.eulerAngles.y, 
+                           0f) * _dPos;
+                _rb.MovePosition(_rb.position + _dPos);
 
-                if (dPos != Vector3.zero)
-                    targetFoward = Vector3.ProjectOnPlane(dPos, Vector3.up);
+                if (_dPos != Vector3.zero)
+                    _targetFoward = Vector3.ProjectOnPlane(_dPos, Vector3.up);
             }
         }
     }
