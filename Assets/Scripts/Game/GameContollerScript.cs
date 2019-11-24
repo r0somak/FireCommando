@@ -32,7 +32,7 @@ namespace Game
             {
                 if (_stats.currentScore > Convert.ToInt32(_stats.highScore))
                 { 
-                    _db.WriteNewScore(FirebaseAuth.DefaultInstance.CurrentUser.UserId, _stats.currentScore);    
+                    _db.WriteNewScore(FirebaseAuth.DefaultInstance.CurrentUser.UserId, FirebaseAuth.DefaultInstance.CurrentUser.Email, _stats.currentScore);    
                 }
                 SceneManager.LoadScene("Leaderboard");
             }

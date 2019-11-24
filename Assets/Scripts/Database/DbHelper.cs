@@ -20,19 +20,25 @@ namespace Database
         }
 
         
-        public void WriteNewScore(string userId, int score)
+        public async void WriteNewScore(string userId, string email,  int score)
         {
             string key = _reference.Child("scores").Push().Key;
-            Models.LeaderboardEntry entry = new Models.LeaderboardEntry(userId, score);
+            Models.LeaderboardEntry entry = new Models.LeaderboardEntry(userId, email, score);
             Dictionary<string, Object> entryValues = entry.ToDictionary();
 
             Dictionary<string, Object> childUpdates = new Dictionary<string, Object>();
-            childUpdates["/scores/" + key] = entryValues;
             childUpdates["/users/" + userId] = entryValues;
 
-            _reference.UpdateChildrenAsync(childUpdates);
+            await _reference.UpdateChildrenAsync(childUpdates);
         }
 
+        public async Task<string> GetLeaderboard()
+        {
+            DataSnapshot data = await FirebaseDatabase.DefaultInstance.GetReference("users").OrderByChild("highScore").GetValueAsync();
+            string scores = data.GetRawJsonValue();
+            return scores;
+        }
+        
         public async Task<string> GetCurrentPlayerHighScore()
         {
             FirebaseUser usr = FirebaseAuth.DefaultInstance.CurrentUser;
