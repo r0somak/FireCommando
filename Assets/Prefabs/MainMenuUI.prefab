@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 5791631901798263482}
   - component: {fileID: 2467488712562886255}
   m_Layer: 5
-  m_Name: OptionsButton
+  m_Name: LeaderboardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1770,4 +1770,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: OPTIONS
+  m_Text: LEADERBOARD

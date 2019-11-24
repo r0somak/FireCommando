@@ -32,6 +32,9 @@ namespace UI
 
             Button startBtn = startGameButton.GetComponent<Button>();
             startBtn.onClick.AddListener(delegate { StartCoroutine(MySceneManager.LoadScene("Level_1")); });
+
+            Button leadBtn = optionsButton.GetComponent<Button>();
+            leadBtn.onClick.AddListener(delegate { StartCoroutine(MySceneManager.LoadScene("Leaderboard")); });
             
             DisplayHelloMessage();
         }

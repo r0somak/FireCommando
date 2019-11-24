@@ -15,12 +15,16 @@ namespace UI
     {
         // Start is called before the first frame update
         public Text leaderboard;
+        public Button btn;
 
         private DbHelper _db;
         void Start()
         {
             _db  = new DbHelper();
            WriteResults();
+
+           Button ok = btn.GetComponent<Button>();
+           ok.onClick.AddListener(delegate { StartCoroutine(MySceneManager.LoadScene("MainMenu")); });
         }
 
         // Update is called once per frame
