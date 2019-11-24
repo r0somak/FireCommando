@@ -10,19 +10,28 @@ namespace Database
 {
     public class DbHelper
     {
-        private DatabaseReference reference;
+        private DatabaseReference _reference;
         public DbHelper()
         {
             FirebaseApp.DefaultInstance.SetEditorDatabaseUrl("https://fire-commando-f72d9.firebaseio.com/");
-            reference = FirebaseDatabase.DefaultInstance.RootReference;
+            _reference = FirebaseDatabase.DefaultInstance.RootReference;
         }
-    
+
+        public async Task<string> GetCurrentPlayerHighScore()
+        {
+            FirebaseUser usr = FirebaseAuth.DefaultInstance.CurrentUser;
+            DataSnapshot data = await FirebaseDatabase.DefaultInstance.GetReference("users").GetValueAsync();
+            string score = data.Child(usr.UserId).Child("highScore").Value.ToString();
+            Debug.LogFormat("Current User: {0}, highScore: {1}", usr.UserId, score);
+            return score;
+        }
+        
         private void SaveNewUser(FirebaseUser user)
         {
             Models.User trueUser = new Models.User(user.UserId, user.DisplayName, user.Email);
             string json = JsonUtility.ToJson(trueUser);
             Debug.Log("JSON: "+json);
-            reference.Child("users").Child(user.UserId).SetRawJsonValueAsync(json).ContinueWith(task =>
+            _reference.Child("users").Child(user.UserId).SetRawJsonValueAsync(json).ContinueWith(task =>
             {
                 if (task.IsFaulted)
                 {

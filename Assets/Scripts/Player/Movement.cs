@@ -28,11 +28,11 @@ namespace Player
         void Update()
         {
             GetInput();
-            UpdateForward();
         }
 
         void FixedUpdate()
         {
+            UpdateForward();
             MovePlayer();
         }
 
